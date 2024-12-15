@@ -4,6 +4,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: mysql
+  namespace: goldencatbankapp
 spec:
   selector:
     matchLabels:
@@ -32,6 +33,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: mysql-service
+  namespace: goldencatbankapp
 spec:
   ports:
   - port: 3306
@@ -43,6 +45,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: bankapp
+  namespace: goldencatbankapp
 spec:
   replicas: 1
   selector:
@@ -71,6 +74,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: bankapp-service
+  namespace: goldencatbankapp
 spec:
   type: LoadBalancer
   ports:
