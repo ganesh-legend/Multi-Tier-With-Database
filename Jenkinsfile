@@ -146,8 +146,8 @@ pipeline
                     {
                          sh "kubectl apply -f ds.yml"
                          sh "kubectl apply -f php-admin-for-mysql-deploy-and-service.yaml"
-                         sh "kubectl port-forward svc/bankapp-service -n goldencatbankapp 1000:80 --address 0.0.0.0 &"
-                         sh "kubectl port-forward svc/phpmyadmin -n goldencatbankapp 2000:80 --address 0.0.0.0 &"
+                         // sh "kubectl port-forward svc/bankapp-service -n goldencatbankapp 5000:80 --address 0.0.0.0 &"
+                         // sh "kubectl port-forward svc/phpmyadmin -n goldencatbankapp 2000:80 --address 0.0.0.0 &"
                     }
                 }
             }
