@@ -86,6 +86,23 @@ pipeline
                 }
             }
         }
+
+
+        //sonar quality gate only works with projects having (java code coverage) jacoco report which is generated after mvn test command. This project doesn't have the jacoco report.
+        // So we can skip this step. If we implement the jacoco then we will do perform this stage only.
+        // Make sure when you are implementing this, set up webhook in sonarqube configuration section of administration field.
+        // http://ip_address:8080/sonarqube-webhook
+        
+        /* stage('Sonar Quality Gates')
+        {
+            steps
+            {
+                timeout(time: 1, unit: 'HOURS') 
+                {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'sonar-token'
+                }
+            }
+        } */
         
         stage('Maven Build')
         {
