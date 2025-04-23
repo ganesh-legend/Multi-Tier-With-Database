@@ -48,7 +48,7 @@ jobs:
       run: docker build -t ganesh1326/goldencatbankapp:latest .
 
     - name: Push Docker image
-      run: docker push ganesh1326/goldencatbankapp:{{ github.run_id }}
+      run: docker push ganesh1326/goldencatbankapp:${{ github.run_id }}
 
   Update-K8s-Manifest:
     runs-on: self-hosted
