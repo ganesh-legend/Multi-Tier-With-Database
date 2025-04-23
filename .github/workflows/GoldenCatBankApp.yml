@@ -56,7 +56,7 @@ jobs:
     steps:
     - name: Update Kubernetes manifest
       run: |
-        sed -i 's|image: ganesh1326/goldencatbankapp:.*|image: ganesh1326/goldencatbankapp:${{ github.run_id }}|' ds.yaml
+        sed -i 's|image: ganesh1326/goldencatbankapp:.*|image: ganesh1326/goldencatbankapp:${{ github.run_id }}|' ds.yml
 
     - name: Commit and push changes
       run: |
