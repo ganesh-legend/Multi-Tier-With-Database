@@ -8,20 +8,29 @@ on:
     - 'ds.yaml'
 
 jobs:
-  build:
-
+  Code-Checkout:
     runs-on: self-hosted
-
     steps:
     - name: Code Checkout
       uses: actions/checkout@v4
-    
+      
+  Setup-JAVA-17:  
+    runs-on: self-hosted
+    needs: Code-Checkout
+    steps:
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-        
+
+  Setup-Maven-and-build:  
+    runs-on: self-hosted
+    needs: Setup-JAVA-17
+    steps:      
+    - name: Setup up maven
+      run: sudo apt-get install maven -y
     - name: Build with Maven
-      run: mvn -B package --file pom.xml
+      run: mvn package
+
