@@ -45,7 +45,7 @@ jobs:
         password: ${{ secrets.DOCKER_PASSWORD }}
 
     - name: Build Docker image
-      run: docker build -t ganesh1326/goldencatbankapp:latest .
+      run: docker build -t ganesh1326/goldencatbankapp:${{ github.run_id }} .
 
     - name: Push Docker image
       run: docker push ganesh1326/goldencatbankapp:${{ github.run_id }}
@@ -63,6 +63,6 @@ jobs:
         git config --global user.name "ganesh-legend"
         git config --global user.email "ganehspawar06969@gmail.com"
         git add ds.yaml
-        git commit -m "[CI]: Update image tag to {{ github.run_id }}"
+        git commit -m "[CI]: Update image tag to ${{ github.run_id }}"
         git push origin main
     
