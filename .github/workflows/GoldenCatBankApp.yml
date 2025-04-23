@@ -19,7 +19,7 @@ jobs:
     needs: Code-Checkout
     steps:
     - name: Set up JDK 17
-      run: sudo apt-get install openjdk-17-jdk
+      run: sudo apt-get install openjdk-17-jdk -y
 
   Setup-Maven-and-build:  
     runs-on: self-hosted
