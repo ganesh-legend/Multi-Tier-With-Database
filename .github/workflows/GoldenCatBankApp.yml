@@ -19,11 +19,7 @@ jobs:
     needs: Code-Checkout
     steps:
     - name: Set up JDK 17
-      uses: actions/setup-java@v4
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: maven
+      run: sudo apt-get install openjdk-17-jdk
 
   Setup-Maven-and-build:  
     runs-on: self-hosted
