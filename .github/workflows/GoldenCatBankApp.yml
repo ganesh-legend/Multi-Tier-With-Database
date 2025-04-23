@@ -27,13 +27,42 @@ jobs:
     steps:      
     - name: Setup up maven
       run: sudo apt-get install maven -y
+
     - name: Build with Maven
       run: mvn package
 
-  Docker-login-and-image-build:
+  Docker-login-and-image-build-and-push:
     runs-on: self-hosted
     needs: Setup-Maven-and-build
     steps:      
     - name: Install Docker
       uses: docker/setup-buildx-action@v1
+
+    - name: Login to Docker Hub
+      uses: docker/login-action@v2
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+
+    - name: Build Docker image
+      run: docker build -t ganesh1326/goldencatbankapp:latest .
+
+    - name: Push Docker image
+      run: docker push ganesh1326/goldencatbankapp:{{ github.run_id }}
+
+  Update-K8s-Manifest:
+    runs-on: self-hosted
+    needs: Docker-login-and-image-build-and-push
+    steps:
+    - name: Update Kubernetes manifest
+      run: |
+        sed -i 's|image: ganesh1326/goldencatbankapp:.*|image: ganesh1326/goldencatbankapp:{{ github.run_id }}|' ds.yaml
+
+    - name: Commit and push changes
+      run: |
+        git config --global user.name "ganesh-legend"
+        git config --global user.email "ganehspawar06969@gmail.com"
+        git add ds.yaml
+        git commit -m "[CI]: Update image tag to {{ github.run_id }}"
+        git push origin main
     
