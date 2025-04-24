@@ -58,7 +58,7 @@ spec:
     spec:
       containers:
       - name: bankapp
-        image: ganesh1326/goldencatbankapp:14639817692
+        image: ganesh1326/goldencatbankapp:14640253347
         ports:
         - containerPort: 8080
         env:
