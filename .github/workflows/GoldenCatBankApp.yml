@@ -5,7 +5,7 @@ on:
     branches: 
     - main 
     paths-ignore:
-    - 'ds.yml'
+    - 'kubernetes/'
 
 jobs:
   Code-Checkout:
@@ -61,12 +61,12 @@ jobs:
 
     - name: Update Kubernetes manifest
       run: |
-        sed -i 's|image: ganesh1326/goldencatbankapp:.*|image: ganesh1326/goldencatbankapp:${{ github.run_id }}|' ds.yml
+        sed -i 's|image: ganesh1326/goldencatbankapp:.*|image: ganesh1326/goldencatbankapp:${{ github.run_id }}|' kubernetes/ds.yml
 
     - name: Commit and push changes
       run: |
         git config --global user.email "ganehspawar06969@gmail.com"
         git config --global user.name "ganesh-legend"
-        git add ds.yml
+        git add kubernetes/ds.yml
         git commit -m "[CI]: Update image tag"
         git push 
