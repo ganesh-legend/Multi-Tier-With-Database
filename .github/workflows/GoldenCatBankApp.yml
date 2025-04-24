@@ -54,15 +54,19 @@ jobs:
     runs-on: self-hosted
     needs: Docker-login-and-image-build-and-push
     steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.MY_GITHUB_TOKEN }}
+
     - name: Update Kubernetes manifest
       run: |
         sed -i 's|image: ganesh1326/goldencatbankapp:.*|image: ganesh1326/goldencatbankapp:${{ github.run_id }}|' ds.yml
 
     - name: Commit and push changes
       run: |
-        git config --global user.name "ganesh-legend"
         git config --global user.email "ganehspawar06969@gmail.com"
+        git config --global user.name "ganesh-legend"
         git add ds.yml
         git commit -m "[CI]: Update image tag"
         git push 
-    
