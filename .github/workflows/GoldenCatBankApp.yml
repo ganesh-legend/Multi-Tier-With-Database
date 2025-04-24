@@ -5,7 +5,7 @@ on:
     branches: 
     - main 
     paths-ignore:
-    - 'kubernetes/'
+    - 'kubernetes/*'
 
 jobs:
   Code-Checkout:
