@@ -63,6 +63,6 @@ jobs:
         git config --global user.name "ganesh-legend"
         git config --global user.email "ganehspawar06969@gmail.com"
         git add ds.yml
-        git commit -m "[CI]: Update image tag to ${{ github.run_id }}"
-        git push origin main
+        git commit -m "[CI]: Update image tag"
+        git push 
     
