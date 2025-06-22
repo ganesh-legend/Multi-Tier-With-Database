@@ -47,7 +47,7 @@ metadata:
   name: bankapp
   namespace: goldencatbankapp
 spec:
-  replicas: 1
+  replicas: 10
   selector:
     matchLabels:
       app: bankapp
